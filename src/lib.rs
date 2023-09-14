@@ -48,7 +48,24 @@ impl FilteredImage {
         FilteredImage { width, height, cells: vec![0 as u8; (width * height * 4) as usize] }
     }
 
-    pub fn fill_cells(&mut self, _array: &[u8]) {
+    pub fn edge_detection_1(&mut self, _array: &[u8]) {
+
+        let from_raw = ImageBuffer::<Rgba<u8>, Vec<u8>>::from_raw(self.width, self.height, _array.to_vec())
+        .expect("cannot read image");
+
+        let detection = edge_detection::canny(
+            DynamicImage::ImageRgba8(from_raw).into_luma8(),
+            2.0,  // sigma
+            0.1,  // strong threshold
+            0.01, // weak threshold
+        );
+
+        //self.cells = _array.to_vec();
+        self.cells = detection.as_image().to_rgba8().into_raw();
+        
+    }
+
+    pub fn invert(&mut self, _array: &[u8]) {
 
         let mut dyn_img = ImageBuffer::<Rgba<u8>, Vec<u8>>::from_raw(self.width, self.height, _array.to_vec())
             .map(|i|DynamicImage::ImageRgba8(i))

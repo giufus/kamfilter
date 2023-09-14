@@ -48,7 +48,8 @@ if (navigator.mediaDevices.getUserMedia) {
                     const inputImageData = new Uint8Array(imgData.data.buffer);
                     
                     // apply filter and change cells content
-                    filteredImage.fill_cells(inputImageData)
+                    //filteredImage.edge_detection_1(inputImageData)
+                    filteredImage.invert(inputImageData)
                     
                     //console.log(filteredImage.width(), filteredImage.height())
 
