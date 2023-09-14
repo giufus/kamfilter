@@ -14,8 +14,6 @@ if (navigator.mediaDevices.getUserMedia) {
             // send stream to video element
             video.srcObject = stream;
 
-            const filteredImage = FilteredImage.new();
-
             video.addEventListener('playing', () => {
 
                 var aspect = video.videoHeight / video.videoWidth;
@@ -32,6 +30,7 @@ if (navigator.mediaDevices.getUserMedia) {
                 let ctx_read = canvas_read.getContext('2d', { willReadFrequently: true });
                 let ctx_write = canvas_write.getContext('2d', { willReadFrequently: true });
 
+                const filteredImage = FilteredImage.new(wantedWidth, height);
                 //let imgData = ctx_read.getImageData(0, 0, canvas_read.width, canvas_read.height);
                 //console.log(imgData.data);
                 //ctx_read.scale(0.6, 0.4)
@@ -51,6 +50,8 @@ if (navigator.mediaDevices.getUserMedia) {
                     // apply filter and change cells content
                     filteredImage.fill_cells(inputImageData)
                     
+                    //console.log(filteredImage.width(), filteredImage.height())
+
                     const outputImageData = new Uint8Array(memory.buffer, filteredImage.cells(), wantedWidth * height * 4);
                     
                     const outputImage = new ImageData(new Uint8ClampedArray(outputImageData), wantedWidth, height);

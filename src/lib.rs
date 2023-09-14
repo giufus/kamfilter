@@ -45,7 +45,7 @@ impl FilteredImage {
     
 
     pub fn new(width: u32, height: u32) -> Self {
-        FilteredImage { width, height, cells: vec![0; (width * height) as usize] }
+        FilteredImage { width, height, cells: vec![0 as u8; (width * height * 4) as usize] }
     }
 
     pub fn fill_cells(&mut self, _array: &[u8]) {
@@ -54,10 +54,10 @@ impl FilteredImage {
             .map(|i|DynamicImage::ImageRgba8(i))
             .expect("Failed to create image from raw data");
         
-        let modified = dyn_img.adjust_contrast(50.0);
+        dyn_img.invert();
 
         //self.cells = _array.to_vec();
-        self.cells = dyn_img.to_rgba8().to_vec();
+        self.cells = dyn_img.to_rgba8().into_raw();
         
     }
 }
@@ -84,4 +84,18 @@ pub fn blur_image_and_draw_from_js(_array: &[u8], width: u32, height: u32) -> Ve
 
 fn print_type_of<T>(_: &T) -> String{
     format!("{}", std::any::type_name::<T>())
+}
+
+#[cfg(test)]
+mod tests {
+
+    use std::{fs::{File}, array};
+    use std::io::Write;
+    use super::*;
+
+
+    #[test]
+    pub fn test_Image_is_processed() {
+        
+    }
 }
