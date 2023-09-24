@@ -84,7 +84,16 @@ button:focus-visible {
 
 #container {
     margin: 0px auto;
-    border: 10px #567 solid;
+    /*border: 10px #567 solid;*/
+}
+
+#pre {
+  color: black;
+  font-weight: bolder;
+  font-size: 1px;
+
+  background-color: #7b8115;
+  
 }
 
 /*
