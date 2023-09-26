@@ -1,8 +1,9 @@
 
 ## KAMFILTER
 
-I am playing with the trio node.js + rust + wasm to do some video processing. I will transform the video into a "gameboy" effect. 
-The html+css code is taken from [here](https://github.com/attackemartin/css-gameboy). It is still a work in progress. 
+I am playing with the trio node.js + rust + wasm to do some video processing. I will transform my webcam videostream into a "gameboy" effect (essentially a `<pre>` tag filled in real time with shining chars). 
+The html+css code is taken from [here](https://github.com/attackemartin/css-gameboy).  
+It's still a work in progress. 
 
 What you get is:  
 ![](gameboy_output.gif)
