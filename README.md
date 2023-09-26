@@ -1,7 +1,12 @@
 
 ## KAMFILTER
 
-I am playing with the trio node.js + rust + wasm to do some video processing. 
+I am playing with the trio node.js + rust + wasm to do some video processing. I will transform the video into a "gameboy" effect. 
+The html+css code is taken from [here](https://github.com/attackemartin/css-gameboy). It is still a work in progress. 
+
+What you get is:  
+![](gameboy_output.gif)
+
 
 You need [wasm-pack](https://github.com/rustwasm/wasm-pack) to build the rust code into wasm.
 I usually use [nodeenv](https://github.com/ekalinin/nodeenv) to create a node.js environment with the correct node version, but you are not forced to go that way. Anyway, I am using the latest LTS that is now v18.17.1.

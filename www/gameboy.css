@@ -6,12 +6,12 @@ body {
   }
 
   #pre {
-    color: yellow;
+    color: rgb(230, 247, 121);
     font-weight: bolder;
-    font-size: 1px;
+    font-size: 2px;
     width: 568px;
     height: 410px;
-    background-color: black;
+    background-color: rgb(51, 48, 48);
     
   }
 
