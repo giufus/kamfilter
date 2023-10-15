@@ -7,7 +7,7 @@ use wasm_bindgen::prelude::*;
 
 use std::vec;
 
-use crate::ascii_processor::generate_ascii;
+use crate::ascii_processor::{generate_ascii};
 
 #[wasm_bindgen]
 extern "C" {
@@ -71,7 +71,7 @@ impl FilteredImage {
         }
     }
 
-    pub fn art(&mut self, _array: &[u8]) {
+    pub fn art(&mut self, rate: u32, _array: &[u8]) {
         let mut dyn_img =
             ImageBuffer::<Rgba<u8>, Vec<u8>>::from_raw(self.width, self.height, _array.to_vec())
                 .map(|i| DynamicImage::ImageRgba8(i))
@@ -79,7 +79,7 @@ impl FilteredImage {
 
         let characters = " .:-=+*#%@".to_string();
 
-        generate_ascii(dyn_img, 5.0 as f32, characters, &mut self.chars, &mut self.chars_size);
+        generate_ascii(dyn_img, rate, characters, &mut self.chars, &mut self.chars_size);
     }
 
     pub fn edge_detection_1(&mut self, _array: &[u8]) {

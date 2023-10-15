@@ -88,11 +88,10 @@ button:focus-visible {
 }
 
 #pre {
-  color: black;
+  color: greenyellow;
   font-weight: bolder;
-  font-size: 1px;
-
-  background-color: #7b8115;
+  font-size: 2px;
+  background-color: black
   
 }
 

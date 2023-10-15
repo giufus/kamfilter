@@ -13,46 +13,6 @@ enum Format {
     SixteenTenths,
 }
 
-pub fn generate_ascii(
-    image: DynamicImage,
-    rate: f32,
-    characters: String,
-    mut buffer: &mut Vec<u8>,
-    mut buffer_size: &mut Vec<u32>,
-) {
-    let (width, height) = image.dimensions();
-    let (format, new_W, new_H) = get_format(rate, width, height);
-    let width_step = (width / (width - new_W)) as usize;
-    let height_step = (height / (height - new_H)) as usize;
-
-    let mut x_max: u32 = 0;
-    let mut y_max: u32 = 0;
-
-    for y in (0..height).step_by(height_step) {
-        for x in (0..width).step_by(width_step) {
-            let element = get_String(
-                image.get_pixel(x, y),
-                characters.chars().collect::<Vec<char>>().as_ref(),
-            );
-
-            buffer.append(element.into_bytes().as_mut());
-
-            if y == 0 {
-                x_max += 1;
-            }
-
-            if x == (width - width_step as u32) {
-                buffer.append(String::from("\n").into_bytes().as_mut());
-            }
-        }
-
-        y_max += 1;
-    }
-
-    buffer_size[0] = x_max;
-    buffer_size[1] = y_max;
-}
-
 fn get_format(rate: f32, width: u32, height: u32) -> (Format, u32, u32) {
     let ratio = width as f32 / height as f32;
     let new_W = (width as f32 / 100.0 * rate).round() as u32;
@@ -66,7 +26,7 @@ fn get_format(rate: f32, width: u32, height: u32) -> (Format, u32, u32) {
     }
 }
 
-fn get_String(pixel: image::Rgba<u8>, characters: &Vec<char>) -> String {
+fn get_string(pixel: image::Rgba<u8>, characters: &Vec<char>) -> String {
     let intent = if pixel[3] == 0 {
         0
     } else {
@@ -76,6 +36,45 @@ fn get_String(pixel: image::Rgba<u8>, characters: &Vec<char>) -> String {
     let ch = characters[(intent / (32 + 7 - (7 + (characters.len() - 7)) as u8)) as usize];
 
     String::from(ch)
+}
+
+
+pub fn generate_ascii(
+    image: DynamicImage,
+    rate: u32,
+    characters: String,
+    mut buffer: &mut Vec<u8>,
+    mut buffer_size: &mut Vec<u32>,
+) {
+    let (width, height) = image.dimensions();
+    let mut x_max: u32 = 0;
+    let mut y_max: u32 = 0;
+
+    for y in 0..height {
+        for x in 0..width {
+            if y % (rate * 2) == 0 && x % rate == 0 {
+                let element = get_string(
+                    image.get_pixel(x, y),
+                    characters.chars().collect::<Vec<char>>().as_ref(),
+                );
+
+                buffer.append(element.into_bytes().as_mut());
+                
+                if y == 0 {
+                    x_max += 1;
+                }
+            }
+        }
+        // Add a new line at the end of each row
+        if y % (rate * 2) == 0 {
+            buffer.append(String::from("\n").into_bytes().as_mut());
+        }
+
+        y_max += 1;
+    }
+
+    buffer_size[0] = x_max;
+    buffer_size[1] = y_max;
 }
 
 #[cfg(test)]

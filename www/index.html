@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title>Hello wasm-pack!</title>
-    <!--link rel="stylesheet" href="index.module.css" /-->
-    <link rel="stylesheet" href="gameboy.css" />
+    <link rel="stylesheet" href="index.module.css" />
+    <!--link rel="stylesheet" href="gameboy.css" /-->
   </head>
   <body>
     <noscript>This page contains webassembly and javascript content, please enable javascript in your browser.</noscript>
@@ -14,9 +14,10 @@
       <video autoplay="true" id="videoElement" hidden></video>
       <canvas id="canvasElementRead" hidden></canvas>
       <canvas id="canvasElementWrite" hidden></canvas>
+      <pre id="pre"></pre>
     </div>
 
-    <div class="gameboy">
+    <div class="gameboy" hidden>
       <div class="front-plate">
         <div class="front-plate-head">
           <div class="vertical-stripe"></div>

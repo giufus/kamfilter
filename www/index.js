@@ -16,7 +16,7 @@ if (navigator.mediaDevices.getUserMedia) {
             video.addEventListener('playing', () => {
 
                 var aspect = video.videoHeight / video.videoWidth;
-                var wantedWidth = video.videoWidth;   // or use height
+                var wantedWidth = video.videoWidth;   
                 var height = Math.round(wantedWidth * aspect);
                 console.log(aspect, wantedWidth, height);
 
@@ -49,7 +49,7 @@ if (navigator.mediaDevices.getUserMedia) {
                     */
                    
                     // print chars to pre
-                    filteredImage.art(inputImageData)
+                    filteredImage.art(1, inputImageData)
                     const chars_size_ptr = filteredImage.chars_size();
                     const chars_size = new Uint32Array(memory.buffer, chars_size_ptr, 2);
 
