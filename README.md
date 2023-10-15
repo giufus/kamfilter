@@ -6,7 +6,7 @@ The html+css code is taken from [here](https://github.com/attackemartin/css-game
 It's still a work in progress. 
 
 What you get is:  
-![](gameboy_output.gif)
+![](gameboy_output3.gif)
 
 
 You need [wasm-pack](https://github.com/rustwasm/wasm-pack) to build the rust code into wasm.
