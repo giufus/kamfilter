@@ -5,16 +5,6 @@ body {
     justify-content: center;
   }
 
-  #pre {
-    color: rgb(230, 247, 121);
-    font-weight: bolder;
-    font-size: 2px;
-    width: 568px;
-    height: 410px;
-    background-color: rgb(51, 48, 48);
-    
-  }
-
   .gameboy {
     position: relative;
     height: 1080px;
@@ -299,6 +289,16 @@ body {
     margin-top: -158px;
     overflow: hidden;
   }
+
+  #pre {
+    color: rgb(119, 255, 0);
+    font-weight: bolder;
+    font-size: 2px;
+    width: 352px;
+    height: 316px;
+    background-color: rgb(0, 0, 0);
+  }
+
   .screen-container .screen:after {
     content: "";
     position: absolute;

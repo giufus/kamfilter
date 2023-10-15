@@ -49,7 +49,7 @@ if (navigator.mediaDevices.getUserMedia) {
                     */
                    
                     // print chars to pre
-                    filteredImage.art(1, inputImageData)
+                    filteredImage.art(2, inputImageData)
                     const chars_size_ptr = filteredImage.chars_size();
                     const chars_size = new Uint32Array(memory.buffer, chars_size_ptr, 2);
 
